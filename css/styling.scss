@@ -48,6 +48,13 @@ a.navbar-brand {
   }
 }
 
+.back {
+  padding-right: 1.2em;
+  padding-bottom: 0;
+  font-size: 1.1em;
+  color: rgb(206, 180, 33);
+}
+
 .contact-text {
   padding-top: 2em;
 }
@@ -56,6 +63,35 @@ a.navbar-brand {
   .smaller {
     font-size: 0.5em;
     color: rgb(165, 28, 28);
+  }
+  .order-form {
+    position: absolute;
+    align-self: center;
+    justify-content: center;
+    width: 70%;
+    left: 15%;
+    top: 200px;
+    z-index: 10;
+    height: 1400px;
+    overflow-y: scroll;
+  }
+}
+
+@media (max-width: 768px) {
+  .order-form {
+    position: absolute;
+    align-self: center;
+    justify-content: center;
+    width: 70%;
+    left: 15%;
+    top: 200px;
+    z-index: 10;
+    height: 1400px;
+    overflow-y: scroll;
+  }
+  .order-footer {
+    margin-top: 1150px;
+    z-index: 0;
   }
 }
 
@@ -95,6 +131,36 @@ a.navbar-brand {
   .card-title {
     font-size: 1em;
   }
+}
+
+@media (max-width: 1450px) {
+  .order-list {
+    font-size: 0.8em;
+    h5 {
+      font-size: 1.2em;
+    }
+  }
+}
+@media (min-width: 769px) {
+  .order-form {
+    position: absolute;
+    align-self: center;
+    justify-content: center;
+    width: 70%;
+    left: 15%;
+    top: 200px;
+    z-index: 10;
+    height: 1000px;
+    overflow-y: scroll;
+  }
+  .order-footer {
+    margin-top: 750px;
+    z-index: 0;
+  }
+}
+
+.title {
+  z-index: 100;
 }
 
 // #total-price {

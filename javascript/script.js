@@ -17,8 +17,8 @@ function load() {
 }
 
 function showMenu() {
-    console.log("Meny klickad på");
-    $("#exampleMenu01").show();
+  console.log("Meny klickad på");
+  $("#exampleMenu01").show();
 }
 
 function updateCartLabel() {
@@ -112,7 +112,7 @@ function renderProducts(products) {
               /> </div>
               <div class="card-body">
                 <h5 class="card-title">${product.title}</h5>
-                <h6 class="card-price">Pris: ${product.price} euro</h6>
+                <h6 class="card-price">Pris: ${product.price}€</h6>
                 <div class="fixed-height-text">
                 <p class="card-text">
                   ${product.description}
@@ -136,8 +136,23 @@ function renderProducts(products) {
   // addListeners();
 }
 
+//Changes all buttons on product cards to their default value
 function restoreButtons() {
   $(".add-button").text("Lägg till");
+}
+
+//This function takes in an array of product objects, and returns a map of their product id and quantity
+function createMapOfCart(cart) {
+  let mapCart = new Map();
+
+  cart.forEach((item) => {
+    if (mapCart.has(item.id)) {
+      mapCart.set(item.id, mapCart.get(item.id) + 1);
+    } else {
+      mapCart.set(item.id, 1);
+    }
+  });
+  return mapCart;
 }
 
 function showCart() {
@@ -148,15 +163,17 @@ function showCart() {
   } else {
     $("#exampleModal").modal("show");
     let output = "";
-    let mapCart = new Map();
 
-    cart.forEach((item) => {
-      if (mapCart.has(item.id)) {
-        mapCart.set(item.id, mapCart.get(item.id) + 1);
-      } else {
-        mapCart.set(item.id, 1);
-      }
-    });
+    let mapCart = createMapOfCart(cart);
+    // let mapCart = new Map();
+
+    // cart.forEach((item) => {
+    //   if (mapCart.has(item.id)) {
+    //     mapCart.set(item.id, mapCart.get(item.id) + 1);
+    //   } else {
+    //     mapCart.set(item.id, 1);
+    //   }
+    // });
 
     let totalPrice = 0;
 
@@ -169,7 +186,7 @@ function showCart() {
                     <div class="row border py-3 text-center">
                       <div class="col-1"><i class="bi bi-trash-fill"></i></div>
                       <div class="col-5 col-4-sm text-start">${item.title}</div>
-                      <div class="col-2 ">${item.price} euro</div>
+                      <div class="col-2 ">${item.price}€</div>
                       <div class="col-2 smaller "><i class="bi bi-dash-circle remove-button" id="${
                         item.id
                       }"></i>
@@ -180,14 +197,14 @@ function showCart() {
       }"></i></div>
                       <div class="col-2 line-price" id="${
                         item.id
-                      }">${roundDecimals(linePrice)} euro</div>
+                      }">${roundDecimals(linePrice)}€</div>
                     </div>
                   </div>`;
       totalPrice += linePrice;
     }
     totalPrice = roundDecimals(totalPrice);
     $("#cartOutput").html(output);
-    $("#priceOutput").text(totalPrice + " euro");
+    $("#priceOutput").text(totalPrice + "€");
 
     $(".remove-button").click(function (e) {
       console.log(e.target.id);
@@ -195,7 +212,7 @@ function showCart() {
       updateCartQuantityLabel(e.target.id, mapCart);
       updateCartLabel();
       updateCartLinePriceLabel(e.target.id, mapCart);
-      $("#priceOutput").text(calculateTotalPrice() + " euro");
+      $("#priceOutput").text(calculateTotalPrice() + "€");
     });
     $(".increase-button").click(function (e) {
       console.log(e.target.id);
@@ -203,7 +220,7 @@ function showCart() {
       updateCartQuantityLabel(e.target.id, mapCart);
       updateCartLabel();
       updateCartLinePriceLabel(e.target.id, mapCart);
-      $("#priceOutput").text(calculateTotalPrice() + " euro");
+      $("#priceOutput").text(calculateTotalPrice() + "€");
     });
   }
 }
@@ -211,8 +228,8 @@ function showCart() {
 function calculateTotalPrice() {
   let sum = 0;
   $(".line-price").each(function () {
-    let split = $(this).text().split(" ");
-    sum += Number(split[0]);
+    let slice = $(this).text().slice(0, -1);
+    sum += Number(slice);
   });
   return roundDecimals(sum);
 }
@@ -263,6 +280,9 @@ function updateCartLinePriceLabel(id, map) {
   let linePrice = quantity * item.price;
   console.log(linePrice);
   console.log(quantity);
-  $("#" + id + ".line-price").text(linePrice + " euro");
+
+  $("#" + id + ".line-price").text(roundDecimals(linePrice) + "€");
   // return (quantity < 1) ? 0 : item.price;
 }
+
+
