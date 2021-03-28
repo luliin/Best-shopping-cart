@@ -4,7 +4,6 @@ let cartMap = new Map();
 $(function () {
   load();
   $(".navbar-toggler").click(function () {
-    console.log("Meny klickad på");
     $("#navbarExample01").slideToggle();
   });
 });
@@ -17,7 +16,6 @@ function load() {
 }
 
 function showMenu() {
-  console.log("Meny klickad på");
   $("#exampleMenu01").show();
 }
 
@@ -74,7 +72,6 @@ function confirmDeleteCart() {
 }
 
 function showEmptyCart() {
-  console.log("I show empty cart");
   Swal.fire(
     "Din varukorg är tom!",
     "Tryck ok för att börja shoppa.",
@@ -128,9 +125,7 @@ function renderProducts(products) {
   $(".add-button").click(function (e) {
     let $this = $(this);
     $this.text("I varukorgen");
-    console.log(e.target.id);
     addToCart(e.target.id);
-    console.log(cart);
     updateCartLabel();
   });
   // addListeners();
@@ -179,8 +174,6 @@ function showCart() {
 
     for (let [key, value] of mapCart.entries()) {
       let item = fetchFromCart(key);
-      console.log(item);
-      console.log(item.title + " = " + value);
       let linePrice = value * item.price;
       output += `<div class="container">
                     <div class="row border py-3 text-center">
@@ -207,7 +200,6 @@ function showCart() {
     $("#priceOutput").text(totalPrice + "€");
 
     $(".remove-button").click(function (e) {
-      console.log(e.target.id);
       decrementItem(e.target.id, mapCart);
       updateCartQuantityLabel(e.target.id, mapCart);
       updateCartLabel();
@@ -215,7 +207,6 @@ function showCart() {
       $("#priceOutput").text(calculateTotalPrice() + "€");
     });
     $(".increase-button").click(function (e) {
-      console.log(e.target.id);
       incrementItem(e.target.id, mapCart);
       updateCartQuantityLabel(e.target.id, mapCart);
       updateCartLabel();
@@ -275,11 +266,8 @@ function updateCartQuantityLabel(id, map) {
 
 function updateCartLinePriceLabel(id, map) {
   let item = fetchFromCart(+id);
-  console.log(item.price);
   let quantity = map.get(+id);
   let linePrice = quantity * item.price;
-  console.log(linePrice);
-  console.log(quantity);
 
   $("#" + id + ".line-price").text(roundDecimals(linePrice) + "€");
   // return (quantity < 1) ? 0 : item.price;

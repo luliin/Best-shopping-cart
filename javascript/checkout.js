@@ -128,7 +128,6 @@ $(function (loadCheckout) {
     });
 
     let check = evaluateInput(resultSet);
-    console.log(check);
 
     if (check) {
       Swal.fire({
