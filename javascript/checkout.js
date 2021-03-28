@@ -142,7 +142,7 @@ $(function (loadCheckout) {
           <h5 class="text-info">På återseende, önskar Julia med personal!</h5>`,
       })
         .then(function () {
-          window.open("/index.html", "_self");
+          window.open("./index.html", "_self");
         })
         .then(clearCart());
     } else console.log("Det fanns fel");
