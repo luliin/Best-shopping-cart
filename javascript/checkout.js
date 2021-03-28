@@ -133,9 +133,13 @@ $(function (loadCheckout) {
     if (check) {
       Swal.fire({
         icon: "success",
+        width: 600,
         title: "Tack för din order, " + firstName + "!",
-        text:
-          "Vi jobbar för att du ska få den levererad så snart som möjligt. Observera att denna butik är helt fiktiv, varför varorna kanske inte lever upp till dina förväntningar. Vi hoppas att du kan ha överseende med detta, och att du ändå känner dig nöjd med din beställning. På återseende!",
+        html: `Vi jobbar för att du ska få den levererad så snart som möjligt. <br> 
+          Observera att denna butik är helt fiktiv, varför varorna kanske inte lever upp till dina förväntningar. <br>
+          Vi hoppas att du kan ha överseende med detta, och att du ändå känner dig nöjd med din beställning. <br>
+          <hr>
+          <h5 class="text-info">På återseende, önskar Julia med personal!</h5>`,
       })
         .then(function () {
           window.open("/index.html", "_self");
