@@ -20,9 +20,12 @@ function showMenu() {
 }
 
 function updateCartLabel() {
-  let $label = $("#cart-label");
-  setCart().length == 0 ? $label.hide() : $label.show();
-  $label.text(cart.length);
+  let $label1 = $("#cart-label-1");
+  let $label2 = $("#cart-label-2");
+  setCart().length == 0 ? $label1.hide() : $label1.show();
+  setCart().length == 0 ? $label2.hide() : $label2.show();
+  $label1.text(cart.length);
+  $label2.text(cart.length);
 }
 
 function addListeners() {
@@ -86,7 +89,8 @@ function hideCart() {
 function renderProducts(products) {
   let cart = setCart();
   if (cart.length == 0) {
-    $("#cart-label").hide();
+    $("#cart-label-1").hide();
+    $("#cart-label-2").hide();
   } else {
     updateCartLabel();
   }
