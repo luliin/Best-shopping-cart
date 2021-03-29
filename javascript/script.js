@@ -157,27 +157,25 @@ function showCart() {
     $("#exampleModal").modal("hide");
   } else {
     $("#exampleModal").modal("show");
-    let output = "";
 
     let mapCart = createMapOfCart(cart);
-    // let mapCart = new Map();
+    renderLineItems(mapCart);
+  }
+}
 
-    // cart.forEach((item) => {
-    //   if (mapCart.has(item.id)) {
-    //     mapCart.set(item.id, mapCart.get(item.id) + 1);
-    //   } else {
-    //     mapCart.set(item.id, 1);
-    //   }
-    // });
-
+function renderLineItems(mapCart) {
+  if (mapCart.size != 0) {
     let totalPrice = 0;
+    let output = "";
 
     for (let [key, value] of mapCart.entries()) {
       let item = fetchFromCart(key);
       let linePrice = value * item.price;
       output += `<div class="container">
                     <div class="row border py-3 text-center">
-                      <div class="col-1"><i class="bi bi-trash-fill"></i></div>
+                      <div class="col-1"><i class="bi bi-trash-fill trash-button" id="${
+                        item.id
+                      }"></i></div>
                       <div class="col-5 col-4-sm text-start">${item.title}</div>
                       <div class="col-2 ">${item.price}€</div>
                       <div class="col-2 smaller "><i class="bi bi-dash-circle remove-button" id="${
@@ -213,6 +211,12 @@ function showCart() {
       updateCartLinePriceLabel(e.target.id, mapCart);
       $("#priceOutput").text(calculateTotalPrice() + "€");
     });
+    $(".trash-button").click(function (e) {
+      removeSingleItemFromCart(e.target.id);
+      $("#" + e.target.id + ".add-button").text("Lägg till");
+    });
+  } else {
+    showEmptyCart();
   }
 }
 
@@ -259,6 +263,15 @@ function updateCartLocalStorage(map) {
   }
 }
 
+function removeSingleItemFromCart(id) {
+  let cart = setCart();
+  cart = cart.filter((item) => item.id !== +id);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartLabel();
+  let newMap = createMapOfCart(cart);
+  renderLineItems(newMap);
+}
+
 function updateCartQuantityLabel(id, map) {
   let quantity = map.get(+id);
   $("#" + id + ".quantity").text(quantity);
@@ -272,5 +285,3 @@ function updateCartLinePriceLabel(id, map) {
   $("#" + id + ".line-price").text(roundDecimals(linePrice) + "€");
   // return (quantity < 1) ? 0 : item.price;
 }
-
-
