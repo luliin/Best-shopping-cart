@@ -60,7 +60,11 @@ a.navbar-brand {
 @media (max-width: 530px) {
   .smaller {
     font-size: 0.5em;
-    color: #a51c1c;
+    color: #d62a2a;
+  }
+  .quantity-checkout {
+    font-size: larger;
+    font-weight: bold;
   }
   .order-form {
     position: absolute;
@@ -150,6 +154,15 @@ a.navbar-brand {
 @media (max-width: 1450px) {
   .order-list {
     font-size: 0.8em;
+  }
+  .order-list h5 {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 1348px) {
+  .order-list {
+    font-size: 0.6em;
   }
   .order-list h5 {
     font-size: 1.2em;

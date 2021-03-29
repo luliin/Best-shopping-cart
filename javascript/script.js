@@ -4,7 +4,7 @@ let cartMap = new Map();
 $(function () {
   load();
   $(".navbar-toggler").click(function () {
-    $("#navbarExample01").slideToggle();
+    $("#navbar").slideToggle();
   });
 });
 
@@ -13,10 +13,6 @@ function load() {
     products = response;
     renderProducts(products);
   });
-}
-
-function showMenu() {
-  $("#exampleMenu01").show();
 }
 
 function updateCartLabel() {
@@ -83,7 +79,7 @@ function showEmptyCart() {
 }
 
 function hideCart() {
-  $("#exampleModal").modal("hide");
+  $("#modal").modal("hide");
 }
 
 function renderProducts(products) {
@@ -158,9 +154,9 @@ function showCart() {
   let cart = setCart();
   if (cart.length == 0) {
     showEmptyCart();
-    $("#exampleModal").modal("hide");
+    $("#modal").modal("hide");
   } else {
-    $("#exampleModal").modal("show");
+    $("#modal").modal("show");
 
     let mapCart = createMapOfCart(cart);
     renderLineItems(mapCart);

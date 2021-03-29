@@ -62,7 +62,11 @@ a.navbar-brand {
 @media (max-width: 530px) {
   .smaller {
     font-size: 0.5em;
-    color: rgb(165, 28, 28);
+    color: rgb(214, 42, 42);
+  }
+  .quantity-checkout {
+    font-size: larger;
+    font-weight: bold;
   }
   .order-form {
     position: absolute;
@@ -149,6 +153,15 @@ a.navbar-brand {
     }
   }
 }
+@media (max-width: 1348px) {
+  .order-list {
+    font-size: 0.6em;
+    h5 {
+      font-size: 1.2em;
+    }
+  }
+}
+
 @media (min-width: 769px) {
   .order-form {
     position: absolute;
