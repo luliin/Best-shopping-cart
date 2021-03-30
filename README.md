@@ -9,9 +9,7 @@ Kravspecifikation
   • Skapa en webbsida som visar några produkter från Fake Store API https://fakestoreapi.com/
   
   • Visa titel, beskrivning, bild och pris.
-  
   • Lägg till en knapp ”Köp eller Lägg till” under varje produkt. Man ska alltså kunna beställa en produkt (G-nivå).
-  
   • När en kund klickar på knappen så kommer man till en beställningssid (eller till varukorgen).
     Du ska alltså skapa en beställningssida som innehåller ett beställningsformulär.
     Visa info om den valda produkten högst upp på sidan.
