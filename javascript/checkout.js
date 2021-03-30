@@ -28,7 +28,7 @@ $(function (loadCheckout) {
       console.log(item.title + " = " + value);
       let linePrice = value * item.price;
       output += `<div class="container order-list">
-                    <div class="row border py-sm-3 text-center">
+                    <div class="row border py-3 text-center">
                       <div class="col-5 col-sm-6 text-start">${item.title}</div>
                       <div class="col-2 col-sm-2">${item.price}€</div>
                       <div class="col-2 smaller quantity-checkout"><span class="border text-start px-2 quantity" id="${
